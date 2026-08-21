@@ -1,0 +1,17 @@
+  services:
+
+    mysql:
+      image: mysql:8.0
+      container_name: shopease-mysql
+      environment:
+        MYSQL_DATABASE: shopease_db
+        MYSQL_ROOT_PASSWORD: root123
+
+    backend:
+      image: shopease-backend:latest
+      container_name: shopease-backend
+      environment:
+        DB_PASSWORD: root123
+        JWT_SECRET: shopease-docker-secret-key-2026-secure-256-bit
+      ports:
+        - "8085:8084"
