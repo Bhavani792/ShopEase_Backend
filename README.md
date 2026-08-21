@@ -4,13 +4,15 @@
 
 ShopEase is an e-commerce backend application developed using Java, Spring Boot, Spring Security, JWT, Spring Data JPA, Hibernate, and MySQL.
 
-I built this project to improve my practical understanding of backend development and implement real-world concepts such as REST APIs, authentication, authorization, database integration, product management, shopping cart management, checkout, order processing, pagination, search, filtering, sorting, and role-based access control.
+I built this project as a learning and practice project to understand the basics of backend development and how different parts of a real-world application work together. Through this project, I learned about REST APIs, authentication, authorization, database integration, product management, shopping cart management, checkout, order processing, pagination, search, filtering, sorting, and role-based access control.
+
+The project helped me understand how backend layers such as controllers, services, repositories, entities, security, and database operations work together.
 
 The application provides APIs for user registration, login, product management, cart operations, checkout, orders, and admin order management.
 
 ## Technologies Used
 
-- Java
+- Java 21
 - Spring Boot
 - Spring Security
 - JWT
@@ -21,8 +23,11 @@ The application provides APIs for user registration, login, product management, 
 - REST APIs
 - Swagger / OpenAPI
 - Postman
+- Docker
+- Docker Compose
 - Git
 - GitHub
+- GitHub Actions
 - Eclipse
 
 ## Features
@@ -54,6 +59,7 @@ The application provides APIs for user registration, login, product management, 
 src/main/java/com/shopease
 │
 ├── config
+│   ├── DataInitializer.java
 │   └── SecurityConfig.java
 │
 ├── controller
@@ -340,9 +346,24 @@ User
 
 Sensitive configuration is handled using environment variables.
 
+### Local Development
+
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/shopease_db
-spring.datasource.username=${DB_USERNAME:root}
+spring.datasource.username=root
+spring.datasource.password=${DB_PASSWORD}
+
+jwt.secret=${JWT_SECRET}
+jwt.expiration=3600000
+```
+
+### Docker
+
+When running the backend with Docker Compose, the backend connects to the MySQL container using the Docker service name:
+
+```properties
+spring.datasource.url=jdbc:mysql://mysql:3306/shopease_db
+spring.datasource.username=root
 spring.datasource.password=${DB_PASSWORD}
 
 jwt.secret=${JWT_SECRET}
@@ -385,6 +406,55 @@ The backend runs on:
 http://localhost:8084
 ```
 
+## Docker
+
+The backend can also be built and run using Docker.
+
+### Build Docker Image
+
+```bash
+docker build -t shopease-backend .
+```
+
+### Run with Docker Compose
+
+```bash
+docker compose up
+```
+
+Docker Compose runs:
+
+```text
+Spring Boot Backend
+       ↓
+MySQL Database
+```
+
+The Docker backend is exposed on:
+
+```text
+http://localhost:8085
+```
+
+The MySQL database runs inside the Docker network on:
+
+```text
+3306
+```
+
+Environment variables used by the Docker setup:
+
+```text
+DB_PASSWORD
+JWT_SECRET
+```
+
+To stop the containers:
+
+```bash
+docker compose down
+```
+
 ## Swagger
 
 Swagger UI is available at:
@@ -412,6 +482,31 @@ Bearer Token
    ↓
 Test Protected APIs
 ```
+
+## CI / GitHub Actions
+
+GitHub Actions is used to automatically verify the backend project.
+
+The CI workflow performs:
+
+```text
+Git Push
+   ↓
+GitHub Actions
+   ↓
+Setup Java 21
+   ↓
+Maven Build
+   ↓
+Docker Build
+   ↓
+Success
+```
+
+The workflow verifies that:
+
+- The Spring Boot application builds successfully.
+- The Docker image can be created successfully.
 
 ## Project Flow
 
@@ -489,7 +584,9 @@ Examples of tested functionality:
 
 ## What I Learned
 
+- Understanding the basics of Spring Boot backend development
 - Building REST APIs using Spring Boot
+- Understanding controller, service, repository, and entity layers
 - Implementing JWT authentication
 - Implementing Spring Security
 - Implementing role-based authorization
@@ -498,11 +595,14 @@ Examples of tested functionality:
 - Understanding Hibernate
 - Creating entity relationships
 - Implementing product CRUD operations
-- Implementing search, filtering, sorting and pagination
+- Implementing search, filtering, sorting, and pagination
 - Building shopping cart functionality
 - Implementing checkout and order management
 - Testing APIs using Postman
 - Using Swagger/OpenAPI
+- Containerizing applications using Docker
+- Running multiple services using Docker Compose
+- Creating CI workflows using GitHub Actions
 - Managing projects using Git and GitHub
 - Separating frontend and backend into independent repositories
 - Protecting sensitive configuration using environment variables
@@ -515,8 +615,6 @@ Examples of tested functionality:
 - Coupons and discounts
 - Email notifications
 - Product image upload
-- Docker containerization
-- CI/CD pipeline
 - Automated testing
 - Cloud deployment
 
