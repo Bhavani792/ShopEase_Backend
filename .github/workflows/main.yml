@@ -28,3 +28,6 @@ jobs:
 
       - name: Build backend
         run: ./mvnw clean package -DskipTests
+
+      - name: Build Docker image
+        run: docker build -t shopease-backend .
