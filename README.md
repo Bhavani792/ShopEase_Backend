@@ -4,11 +4,11 @@
 
 ShopEase is an e-commerce backend application developed using Java, Spring Boot, Spring Security, JWT, Spring Data JPA, Hibernate, MySQL and Google Gemini API.
 
-I built this project as a learning and practice project to understand the basics of backend development and how different parts of a real-world application work together. Through this project, I learned about REST APIs, authentication, authorization, database integration, product management, shopping cart management, checkout, order processing, pagination, search, filtering, sorting, and role-based access control.
+The application includes REST API development, authentication, authorization, database integration, product management, shopping cart management, checkout, order processing, pagination, search, filtering, sorting and role-based access control.
 
-The project helped me understand how backend layers such as controllers, services, repositories, entities, security, and database operations work together.
+The backend follows a layered architecture consisting of controllers, services, repositories, entities and security components to handle business logic and database operations.
 
-The application provides APIs for user registration, login, product management, cart operations, checkout, orders, and admin order management.
+The application provides APIs for user registration, login, product management, cart operations, checkout, order processing and admin order management. It also integrates Google Gemini API to provide AI-powered product recommendations based on customer requirements and available product data.
 
 ## Technologies Used
 
