@@ -126,6 +126,7 @@ public class SecurityConfig {
                         "/auth/login"
                 ).permitAll()
 
+                .requestMatchers("/api/ai/**").permitAll()
                 // ==================================
                 // SWAGGER / OPENAPI
                 // ==================================
